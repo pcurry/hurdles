@@ -17,4 +17,17 @@ compareWordsTests =
   ]
 
 
+-- Given two strings of equal length, return a list of bools of if the character at the location is correct
+characterCorrect :: String -> String -> [Bool]
+characterCorrect "" ""         = []
+characterCorrect (x:xs) ""     = [False]
+characterCorrect "" (y:ys)     = [False]
+characterCorrect (x:xs) (y:ys) = x == y : characterCorrect xs ys
+
+
+
+
+
+
+
 allTests = and compareWordsTests
