@@ -1,5 +1,4 @@
-foo = True
-bar = False
+
 
 compareWords :: String -> String -> Bool
 compareWords "" ""          = True
@@ -22,12 +21,15 @@ characterCorrect :: String -> String -> [Bool]
 characterCorrect "" ""         = []
 characterCorrect (x:xs) ""     = [False]
 characterCorrect "" (y:ys)     = [False]
-characterCorrect (x:xs) (y:ys) = x == y : characterCorrect xs ys
+characterCorrect (x:xs) (y:ys) = (x == y) : (characterCorrect xs ys)
 
 
+characterCorrectTests =
+  [ characterCorrect "Barney" "Barney"
+  , characterCorrect "joe" "joey"
+  , characterCorrect "joan" "joey"
+  , characterCorrect "joel" "joey"
+  , characterCorrect "joyce" "joe"
+  ]
 
-
-
-
-
-allTests = and compareWordsTests
+allWordTests = and compareWordsTests
