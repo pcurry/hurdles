@@ -33,3 +33,40 @@ characterCorrectTests =
   ]
 
 allWordTests = and compareWordsTests
+
+
+-- characterLocation to flag this is the right character, or this is the right character in the wrong position
+characterLocation :: Char -> String -> String -> Int
+characterLocation x "" "" = 0
+characterLocation x (y:ys) "" == 
+
+
+
+
+-- Helper function to keep pushing in the missed items
+characterWrongCorrectMissplaced :: String -> String -> String -> [Int]
+characterWrongCorrectMissplaced "" "" ""      = []
+-- characterWrongCorrectMissplaced (x:xs) (y:ys) ""
+
+
+
+data ValueAndLocation = Correct | Incorrect | CorrectValue
+
+
+-- given two strings of equal length, return a list of ValueAndLocation of whether the characters are correct
+verifyGuess :: String -> String -> String -> [ValueAndLocation]
+verifyGuess "" "" carries = []
+verifyGuess (x:xs) (y:ys) carries =
+  if
+    x == y
+  then
+    Correct : verifyGuess xs ys carries
+  else
+    (
+      if
+        elem x ys || elem x carries
+      then
+        CorrectValue
+      else
+        Incorrect
+    ) : verifyGuess xs ys (y:carries)
