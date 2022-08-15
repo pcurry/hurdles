@@ -35,21 +35,6 @@ characterCorrectTests =
 allWordTests = and compareWordsTests
 
 
--- characterLocation to flag this is the right character, or this is the right character in the wrong position
-characterLocation :: Char -> String -> String -> Int
-characterLocation x "" "" = 0
-characterLocation x (y:ys) "" == 
-
-
-
-
--- Helper function to keep pushing in the missed items
-characterWrongCorrectMissplaced :: String -> String -> String -> [Int]
-characterWrongCorrectMissplaced "" "" ""      = []
--- characterWrongCorrectMissplaced (x:xs) (y:ys) ""
-
-
-
 data ValueAndLocation = Correct | Incorrect | CorrectValue
 
 
