@@ -20,8 +20,8 @@ compareWordsTests =
 -- Given two strings of equal length, return a list of bools of if the character at the location is correct
 characterCorrect :: String -> String -> [Bool]
 characterCorrect "" ""         = []
-characterCorrect (_:_) ""     = [False]
-characterCorrect "" (_:_)     = [False]
+characterCorrect (_:_) ""      = [False]
+characterCorrect "" (_:_)      = [False]
 characterCorrect (x:xs) (y:ys) = (x == y) : (characterCorrect xs ys)
 
 
@@ -41,16 +41,16 @@ allWordTests = and compareWordsTests
 data ValueAndLocation = Correct | Incorrect | CorrectValue deriving Show
 
 instance Eq ValueAndLocation where
-  Correct == Correct = True
-  Incorrect == Incorrect = True
-  CorrectValue == CorrectValue = True
-  _ == _ = False
+  Correct      == Correct       = True
+  Incorrect    == Incorrect     = True
+  CorrectValue == CorrectValue  = True
+  _            == _             = False
 
 
 
 removeFirst :: Eq a => a -> [a] -> [a] 
-removeFirst x [] = []
-removeFirst x (y:ys) | x == y = ys
+removeFirst _ [] = []
+removeFirst x (y:ys) | x == y    = ys
                      | otherwise = y : removeFirst x ys
 
 
@@ -61,10 +61,10 @@ verifyGuess xs ys = verifyGuess' xs ys ys
 
 -- given two strings of equal length, return a list of ValueAndLocation of whether the characters are correct
 verifyGuess' :: String -> String -> String -> [ValueAndLocation]
-verifyGuess' "" "" carries = []
+verifyGuess' "" "" _ = []
 verifyGuess' (x:xs) (y:ys) carries | x == y = Correct : verifyGuess' xs ys carries'
                                    | elem x carries = CorrectValue : verifyGuess' xs ys carries'
                                    | otherwise = Incorrect : verifyGuess' xs ys carries
-
   where carries' = removeFirst x carries
-        
+
+verifyGuess' _ _ _ = error "Inconceivable!"
