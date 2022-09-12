@@ -2,8 +2,8 @@
 
 compareWords :: String -> String -> Bool
 compareWords "" ""          = True
-compareWords (_:_) ""      = False
-compareWords "" (_:_)      = False
+compareWords (_:_) ""       = False
+compareWords "" (_:_)       = False
 compareWords (x:xs) (y:ys)  = x == y && compareWords xs ys
 
 
@@ -62,9 +62,9 @@ verifyGuess xs ys = verifyGuess' xs ys ys
 -- given two strings of equal length, return a list of ValueAndLocation of whether the characters are correct
 verifyGuess' :: String -> String -> String -> [ValueAndLocation]
 verifyGuess' "" "" _ = []
-verifyGuess' (x:xs) (y:ys) carries | x == y = Correct : verifyGuess' xs ys carries'
+verifyGuess' (x:xs) (y:ys) carries | x == y         = Correct : verifyGuess' xs ys carries'
                                    | elem x carries = CorrectValue : verifyGuess' xs ys carries'
-                                   | otherwise = Incorrect : verifyGuess' xs ys carries
+                                   | otherwise      = Incorrect : verifyGuess' xs ys carries
   where carries' = removeFirst x carries
 
 verifyGuess' _ _ _ = error "Inconceivable!"
